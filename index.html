@@ -1,0 +1,183 @@
+<script src="https://concurfortunes.com/94/cb/a4/94cba44db07324ce70291446a18959c8.js"></script>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>CineArena.site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --accent-gold: #FFD700;
+            --accent-red: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            padding-top: 75px; 
+            padding-bottom: 95px; 
+        }
+
+        /* --- ORIGINAL HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px; 
+            z-index: 1000; background: var(--primary-gradient); 
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 15px; box-shadow: 0 2px 10px rgba(0, 114, 255, 0.3);
+        }
+
+        .logo-box a { font-size: 20px; font-weight: 900; text-decoration: none; }
+        .logo-text-white { color: #ffffff; }
+        .logo-text-gold { color: var(--accent-gold); } 
+
+        .header-icons { display: flex; gap: 8px; }
+        .tg-circle {
+            width: 32px; height: 32px; background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.15); border: none;
+        }
+
+        /* --- GRID CONTAINER --- */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 12px; 
+            padding: 10px; 
+            align-items: start;
+        }
+        
+        .exam-card {
+            background: var(--card-bg); border-radius: 15px; padding: 12px 6px;
+            text-align: center; border: 1px solid rgba(0,0,0,0.05); 
+            display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: 0.2s; cursor: pointer;
+            min-height: 160px;
+        }
+        .exam-card:active { transform: scale(0.96); }
+
+        .card-icon-bg { 
+            width: 75px; height: 75px; border-radius: 12px; 
+            overflow: hidden; margin-bottom: 8px; background: #f0f0f0;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08); flex-shrink: 0;
+        }
+        .card-icon-bg img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-label { 
+            font-size: 10px; font-weight: 700; color: #444; min-height: 38px;
+            line-height: 1.25; margin-bottom: 2px; display: -webkit-box;
+            -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+            word-break: break-word;
+        }
+
+        .status-badge { font-size: 9px; font-weight: 800; margin-top: auto; color: #0072ff; }
+        .status-badge.live { color: var(--accent-red); font-weight: 900; }
+
+        /* --- QUALITY MODAL --- */
+        #quality-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center;
+        }
+        .quality-content { 
+            background: white; width: 85%; max-width: 320px; padding: 25px; 
+            border-radius: 20px; text-align: center; border: 2px solid #0072ff; 
+        }
+        .quality-btn {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            background: #f0f4f8; border: 1px solid #ddd; border-radius: 25px;
+            font-weight: 800; color: #333; cursor: pointer;
+        }
+        .quality-btn:active { background: var(--primary-gradient); color: white; }
+
+        /* --- ORIGINAL BOTTOM NAV --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 75px;
+            background: var(--primary-gradient); display: flex;
+            justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-btn { display: flex; flex-direction: column; align-items: center; flex: 1; cursor: pointer; opacity: 0.7; }
+        .nav-btn.active { opacity: 1; }
+        .nav-svg { width: 28px; height: 28px; margin-bottom: 4px; }
+        .nav-label { font-size: 10px; color: white; font-weight: 700; text-transform: uppercase; }
+        .nav-btn.active .nav-label { color: var(--accent-gold); }
+
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-content { background: white; width: 85%; max-width: 350px; padding: 25px; border-radius: 20px; text-align: center; border: 2px solid #0072ff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <a href="#"><span class="logo-text-white">CineArena</span><span class="logo-text-gold">.SITE</span></a>
+        </div>
+        <div class="header-icons">
+            <button class="tg-circle" onclick="toggleDisclaimer()"><i class="fas fa-exclamation-triangle" style="color:#FFC107"></i></button>
+            <a href="https://t.me/cine_arena" class="tg-circle" target="_blank"><i class="fab fa-telegram-plane" style="color:#0088cc"></i></a>
+            <a href="https://t.me/cricstream" class="tg-circle" target="_blank"><i class="fas fa-paper-plane" style="color:#ff3b30"></i></a>
+            <a href="https://t.me/cine_arena" class="tg-circle" target="_blank"><i class="fab fa-telegram" style="color:#28a745"></i></a>
+        </div>
+    </header>
+
+    <div id="disclaimer-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 style="color:#0072ff">Disclaimer</h3>
+            <p style="font-size:12px; margin:15px 0; line-height:1.5; color:#555;">This site is not affiliated with any television channel. All content is copyright of their respective owners. We cannot accept any responsibility for the content on this site. We do not host any content.</p>
+            <div style="background:#f0f4f8; padding:10px; border-radius:8px; font-weight:bold; font-size:11px; color:#333;">Contact: cinearena01@gmail.com</div>
+            <button onclick="toggleDisclaimer()" style="margin-top:15px; background:var(--primary-gradient); color:white; border:none; padding:12px; border-radius:25px; width:100%; font-weight:bold;">Close</button>
+        </div>
+    </div>
+
+    <div id="quality-modal" class="modal-overlay">
+        <div class="quality-content">
+            <h3 style="color:#0072ff; margin-bottom:10px;">Select Quality</h3>
+            <div id="quality-list"></div>
+            <button onclick="closeQuality()" style="margin-top:15px; background:#ff4d4d; color:white; border:none; padding:10px; border-radius:25px; width:100%; font-weight:bold;">CANCEL</button>
+        </div>
+    </div>
+
+    <main class="grid-container" id="main-grid"></main>
+
+    <nav class="bottom-nav">
+        <div class="nav-btn active" onclick="filterBySport('all', this)">
+            <svg class="nav-svg" viewBox="0 0 512 512"><path fill="#FFC107" d="M256 0L0 236h38v276h178v-138h80v138h178V236h38z"/></svg>
+            <span class="nav-label">ALL</span>
+        </div>
+        <div class="nav-btn" onclick="filterBySport('Cricket', this)">
+            <svg class="nav-svg" viewBox="0 0 512 512">
+                <rect x="160" y="150" width="20" height="300" fill="#FFC107"/><rect x="246" y="150" width="20" height="300" fill="#FFC107"/><rect x="332" y="150" width="20" height="300" fill="#FFC107"/>
+                <rect x="150" y="140" width="210" height="15" fill="#795548"/><circle cx="410" cy="410" r="35" fill="#D50000"/>
+            </svg>
+            <span class="nav-label">CRICKET</span>
+        </div>
+        <div class="nav-btn" onclick="filterBySport('Football', this)">
+            <i class="fas fa-futbol nav-svg" style="color: white; font-size: 26px; display: flex; align-items: center; justify-content: center;"></i>
+            <span class="nav-label">FOOTBALL</span>
+        </div>
+        <div class="nav-btn" onclick="filterBySport('Tennis', this)">
+            <i class="fas fa-table-tennis-paddle-ball nav-svg" style="color: white; font-size: 26px; display: flex; align-items: center; justify-content: center;"></i>
+            <span class="nav-label">TENNIS</span>
+        </div>
+    </nav>
+
+    <script>
+        const _0x2b7dd3=_0x2499;(function(_0x15f97a,_0x3e4529){const _0x43a6a6=_0x2499,_0x4fbd73=_0x15f97a();while(!![]){try{const _0x724613=parseInt(_0x43a6a6(0x1eb))/0x1+-parseInt(_0x43a6a6(0x1f2))/0x2+-parseInt(_0x43a6a6(0x1de))/0x3*(-parseInt(_0x43a6a6(0x1e1))/0x4)+-parseInt(_0x43a6a6(0x1f3))/0x5*(parseInt(_0x43a6a6(0x1e4))/0x6)+-parseInt(_0x43a6a6(0x1fa))/0x7*(parseInt(_0x43a6a6(0x20f))/0x8)+-parseInt(_0x43a6a6(0x1d4))/0x9+parseInt(_0x43a6a6(0x1ff))/0xa;if(_0x724613===_0x3e4529)break;else _0x4fbd73['push'](_0x4fbd73['shift']());}catch(_0xa76810){_0x4fbd73['push'](_0x4fbd73['shift']());}}}(_0x105c,0x3004c));const _0x_api=_0x2b7dd3(0x1f4);let allMatches=[],currentFilter='all';function toggleDisclaimer(){const _0x1bc06b=_0x2b7dd3,_0x19eb97=document[_0x1bc06b(0x1c9)]('disclaimer-modal');_0x19eb97[_0x1bc06b(0x1d8)][_0x1bc06b(0x1f6)]=_0x19eb97[_0x1bc06b(0x1d8)][_0x1bc06b(0x1f6)]===_0x1bc06b(0x1cb)?'none':_0x1bc06b(0x1cb);}async function initApp(){const _0x635fbe=_0x2b7dd3;try{const _0x5dc1e9=await fetch(_0x_api),_0x386888=await _0x5dc1e9['json']();allMatches=_0x386888[_0x635fbe(0x205)],renderMatches(),setInterval(updateLiveUI,0x3e8);}catch(_0xd4aad7){console[_0x635fbe(0x1d5)](_0x635fbe(0x1f5));}}function renderMatches(){const _0x535b82=_0x2b7dd3,_0x1a9e31=document[_0x535b82(0x1c9)](_0x535b82(0x20a)),_0x30cbd3=currentFilter===_0x535b82(0x1fd)?allMatches:allMatches[_0x535b82(0x1f0)](_0x38a02f=>_0x38a02f[_0x535b82(0x208)]===currentFilter);_0x1a9e31[_0x535b82(0x20d)]=_0x30cbd3['map'](_0x30b7cc=>{const _0xfa2642=_0x535b82,_0xa96abd=_0x30b7cc[_0xfa2642(0x1f9)]===_0xfa2642(0x1e0),_0x7dde62=_0x30b7cc[_0xfa2642(0x1dc)]?.['APP']||_0x30b7cc[_0xfa2642(0x1df)],_0x576f53=new Date(_0x30b7cc['startTime'])[_0xfa2642(0x1f8)](),_0x19ff21=allMatches[_0xfa2642(0x20e)](_0x30b7cc);return _0xfa2642(0x20c)+_0x19ff21+')\x22\x20data-start=\x22'+_0x576f53+_0xfa2642(0x1fc)+_0xa96abd+_0xfa2642(0x1ed)+_0x7dde62+'\x22\x20onerror=\x22this.src=\x27https://via.placeholder.com/150?text=Sports\x27\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-label\x22>'+_0x30b7cc[_0xfa2642(0x1cc)]+_0xfa2642(0x1e2)+(_0xa96abd?'live':'')+'\x22>'+(_0xa96abd?_0xfa2642(0x1fb):_0xfa2642(0x202))+_0xfa2642(0x20b);})[_0x535b82(0x1ef)]('');}function showQualities(_0x949e37){const _0x3298da=_0x2b7dd3,_0x44504b=allMatches[_0x949e37];if(_0x44504b['status']!==_0x3298da(0x1e0))return alert('Not\x20Live\x20yet!');const _0xa06028=_0x44504b[_0x3298da(0x1d2)]?.[0x0]?.[_0x3298da(0x1d1)]||'',_0x309071=_0xa06028[_0x3298da(0x201)]('\x0a'),_0x1ae93e=document[_0x3298da(0x1c9)](_0x3298da(0x1cd));_0x1ae93e[_0x3298da(0x20d)]='';for(let _0x45d354=0x0;_0x45d354<_0x309071[_0x3298da(0x200)];_0x45d354++){if(_0x309071[_0x45d354][_0x3298da(0x1ee)](_0x3298da(0x1ea))){const _0x9016ba=_0x309071[_0x45d354]['split']('RESOLUTION=')[0x1][_0x3298da(0x201)](',')[0x0]['split']('x')[0x1]+'p',_0x5322cc=_0x309071[_0x45d354+0x1]['trim'](),_0x39d65c=document[_0x3298da(0x1e6)](_0x3298da(0x1fe));_0x39d65c[_0x3298da(0x209)]=_0x3298da(0x1da),_0x39d65c[_0x3298da(0x206)]='Play\x20'+_0x9016ba,_0x39d65c[_0x3298da(0x1ec)]=()=>{const _0x724ce3=_0x3298da;window[_0x724ce3(0x1c8)][_0x724ce3(0x207)]=_0x724ce3(0x1e9)+encodeURIComponent(_0x5322cc);},_0x1ae93e[_0x3298da(0x1d7)](_0x39d65c);}}document[_0x3298da(0x1c9)]('quality-modal')[_0x3298da(0x1d8)][_0x3298da(0x1f6)]=_0x3298da(0x1cb);}function _0x2499(_0xd38cdf,_0x48648c){_0xd38cdf=_0xd38cdf-0x1c8;const _0x105c70=_0x105c();let _0x249938=_0x105c70[_0xd38cdf];return _0x249938;}function closeQuality(){const _0x44151a=_0x2b7dd3;document['getElementById']('quality-modal')[_0x44151a(0x1d8)][_0x44151a(0x1f6)]='none';}function filterBySport(_0x222f51,_0x499c0){const _0x22d2e1=_0x2b7dd3;currentFilter=_0x222f51,document['querySelectorAll'](_0x22d2e1(0x1db))[_0x22d2e1(0x1e8)](_0x2e8326=>_0x2e8326[_0x22d2e1(0x203)]['remove'](_0x22d2e1(0x1cf))),_0x499c0[_0x22d2e1(0x203)][_0x22d2e1(0x1e5)](_0x22d2e1(0x1cf)),renderMatches();}function _0x105c(){const _0x147eb2=['indexOf','424elbTHb','location','getElementById','live','flex','title','quality-list','data-start','active','now','auto','auto_streams','querySelector','3421926rUjLwL','error','.status-badge','appendChild','style','floor','quality-btn','.nav-btn','image_cdn','true','951wpYLLC','image','LIVE','1044VAjFyj','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22status-badge\x20','querySelectorAll','6mVCdHi','add','createElement','setAttribute','forEach','https://t20wc-livid.vercel.app/fcmarch/plyr.html?url=','RESOLUTION=','382189ZsDVsw','onclick','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-icon-bg\x22><img\x20src=\x22','includes','join','filter','.exam-card','759374piwUvx','232515CMZwko','https://raw.githubusercontent.com/Jitendra-unatti/fancode/refs/heads/main/data/fancode.json','Load\x20Error','display','getAttribute','getTime','status','9079gcOWky','●\x20LIVE','\x22\x20data-live=\x22','all','button','6069030iswVNJ','length','split','--:--:--','classList','data-live','matches','innerText','href','category','className','main-grid','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22exam-card\x22\x20onclick=\x22showQualities(','innerHTML'];_0x105c=function(){return _0x147eb2;};return _0x105c();}function updateLiveUI(){const _0x23cc20=_0x2b7dd3;document[_0x23cc20(0x1e3)](_0x23cc20(0x1f1))[_0x23cc20(0x1e8)](_0x1914d5=>{const _0x4a2c58=_0x23cc20;if(_0x1914d5[_0x4a2c58(0x1f7)]('data-live')===_0x4a2c58(0x1dd))return;const _0x267eb8=parseInt(_0x1914d5['getAttribute'](_0x4a2c58(0x1ce)))-Date[_0x4a2c58(0x1d0)](),_0x545fa4=_0x1914d5[_0x4a2c58(0x1d3)](_0x4a2c58(0x1d6));if(_0x267eb8<=0x0)_0x545fa4[_0x4a2c58(0x20d)]=_0x4a2c58(0x1fb),_0x545fa4[_0x4a2c58(0x203)]['add'](_0x4a2c58(0x1ca)),_0x1914d5[_0x4a2c58(0x1e7)](_0x4a2c58(0x204),_0x4a2c58(0x1dd));else{const _0x1ccc29=Math[_0x4a2c58(0x1d9)](_0x267eb8/0x36ee80),_0x48ee1b=Math[_0x4a2c58(0x1d9)](_0x267eb8%0x36ee80/0xea60),_0x2b1b3f=Math[_0x4a2c58(0x1d9)](_0x267eb8%0xea60/0x3e8);_0x545fa4['innerHTML']=_0x1ccc29+'h\x20'+_0x48ee1b+'m\x20'+_0x2b1b3f+'s';}});}initApp();
+    </script>
+</body>
+</html>
